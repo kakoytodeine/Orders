@@ -1,0 +1,37 @@
+# Виртуальные окружения
+.venv/
+venv/
+
+# PyCharm / IDE
+.idea/
+.vscode/
+
+# Переменные окружения
+.env
+*.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Компиляция и билды
+build/
+dist/
+*.egg-info/
+
+# Логи
+*.log
+
+# Alembic (migrations cache, если не нужен в репозитории)
+alembic/__pycache__/
+
+# Data / временные файлы
+data/
+*.sqlite3
+*.db
+
+# Системные файлы
+.DS_Store
+Thumbs.db
