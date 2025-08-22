@@ -17,6 +17,7 @@ def get_main_menu(tg_id: int) -> InlineKeyboardMarkup:
             inline_buttons.append(InlineKeyboardButton("️❌ Удалить категорию", callback_data="delete_category"))
             inline_buttons.append(InlineKeyboardButton("➕ Добавить товар", callback_data="add_product"))
             inline_buttons.append((InlineKeyboardButton("❌ Удалить товар", callback_data="delete_product")))
+            inline_buttons.append(InlineKeyboardButton("⏰ Запланировать уведомление", callback_data="add_task"))
             kb.add(*inline_buttons)
         else:
             kb.add(*inline_buttons)

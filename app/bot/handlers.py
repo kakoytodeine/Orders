@@ -344,6 +344,7 @@ def handlers(bot: TeleBot):
     def add_product_by_category(call: CallbackQuery):
         tg_id = call.from_user.id
         chat_id = call.message.chat.id
+        bot.add_poll_handler(call.id)
         
         if tg_id in temp_messages:
             try:
@@ -590,3 +591,12 @@ def handlers(bot: TeleBot):
                               message_id=call.message.message_id,
                               text="📌 Главное меню",
                               reply_markup=get_main_menu(tg_id))
+        
+        
+    ########################
+    # Запланировать задачу #
+    ########################
+    
+    @bot.callback_query_handler(func=lambda call: call.data == "add_task")
+    def create_new_task(call: CallbackQuery):
+        bot.answer_callback_query(call.id, "Функция будет добавлена позже", show_alert=True)
