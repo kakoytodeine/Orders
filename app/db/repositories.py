@@ -177,7 +177,15 @@ class ProductRepository:
         except Exception as e:
             logger.error(f'failed delete product {e}')
             return False
-
+    
+    def get_product_by_name(self, product_name: str, category_id: int) -> Product | None:
+        try:
+            return self.session.query(Product).filter(Product.name == product_name, Product.category_id==category_id).first()
+        except Exception as e:
+            logger.error(f"Error getting product by name in category {e}")
+            return None
+            
+            
 
 class OrderRepository:
     def __init__(self, session: Session):

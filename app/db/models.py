@@ -32,10 +32,10 @@ class Product(Base):
     name: Mapped[str] = mapped_column(nullable=False)
     target_quantity: Mapped[int] = mapped_column(nullable=False)
     photo_url: Mapped[str] = mapped_column(nullable=True)
-    category_id: Mapped[int] = mapped_column(ForeignKey('categories.id'), nullable=False)
+    category_id: Mapped[int] = mapped_column(ForeignKey('categories.id', ondelete="CASCADE"), nullable=False)
 
     category = relationship('Category', back_populates='products')
-    orders = relationship('OrderItem', back_populates='product')
+    orders = relationship('OrderItem', back_populates='product', cascade="all, delete-orphan")
 
 
 
