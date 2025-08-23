@@ -28,7 +28,6 @@ dist/
 alembic/__pycache__/
 
 # Data / временные файлы
-data/
 *.sqlite3
 *.db
 
