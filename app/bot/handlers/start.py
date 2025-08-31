@@ -9,6 +9,7 @@ from app.logger import logger
 
 @bot.message_handler(commands=['start'])
 def welcome(message: Message):
+    bot.delete_message(message.chat.id, message.message_id)
     tg_user = message.from_user
     tg_id = tg_user.id
     username = tg_user.username or ""

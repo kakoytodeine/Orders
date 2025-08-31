@@ -33,3 +33,6 @@ alembic/__pycache__/
 # Системные файлы
 .DS_Store
 Thumbs.db
+
+*.xlsx
+data/load_products.py
