@@ -31,6 +31,9 @@ class UserService:
     
     def get_user_by_tg_id(self, tg_id: int) -> User | None:
         return self.user_repo.get_user_by_tg_id(tg_id=tg_id)
+    
+    def get_all_users(self):
+        return self.user_repo.get_all_users()
 
 
 class ProductService:
@@ -53,6 +56,9 @@ class ProductService:
     
     def get_product_by_name_in_category(self, product_name: str, category_id: int) -> Product:
         return self.repo_product.get_product_by_name(product_name, category_id)
+    
+    def get_all_products(self):
+        return self.repo_product.get_all_products()
     
     def create_product_for_admin(
             self,

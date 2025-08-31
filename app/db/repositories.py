@@ -1,4 +1,7 @@
 from datetime import datetime
+
+from sqlalchemy import select
+
 from app.db.models import User, Category, Product, Order, OrderItem
 from sqlalchemy.orm import Session
 from app.logger import logger
@@ -38,6 +41,13 @@ class UserRepository:
             return self.session.query(User).filter(User.id == user_id).first()
         except Exception as e:
             logger.error(f"Error getting user by id: {e}")
+            return None
+        
+    def get_all_users(self):
+        try:
+            return self.session.query(User).all()
+        except Exception as e:
+            logger.error(f"Error getting all users: {e}")
             return None
 
 
@@ -123,6 +133,13 @@ class ProductRepository:
             return self.session.query(Product).filter(Product.category_id == category_id).all()
         except Exception as e:
             logger.error(f'Error getting products by category {e}')
+            return []
+        
+    def get_all_products(self):
+        try:
+            return self.session.scalars(select(Product)).all()
+        except Exception as e:
+            logger.error(f"Error getting all products {e}")
             return []
     
     def get_by_id(self, product_id: int) -> Product | None:

@@ -1,6 +1,9 @@
-from telebot.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from app.services import CategoryService, UserService, ProductService
 from app.db.db_session import SessionLocal
+
+cart = {}
+temp_messages = {}
 
 
 def get_main_menu(tg_id: int) -> InlineKeyboardMarkup:
@@ -25,8 +28,14 @@ def get_main_menu(tg_id: int) -> InlineKeyboardMarkup:
         return kb
 
 
-cart = {}
-
+def get_last_order_keyboard() -> InlineKeyboardMarkup:
+    kb = InlineKeyboardMarkup(row_width=1)
+    
+    kb.add(InlineKeyboardButton("Сформировать заказ без нулевых товаров", callback_data="without_actual_zeros_product"))
+    kb.add(InlineKeyboardButton("Сформировать заказ с нулевым товаром", callback_data="with_actual_zeros_product"))
+    kb.add(InlineKeyboardButton("🔙 Назад", callback_data="back_to_main_menu"))
+    
+    return kb
 
 def get_category_by_user(user_id: int):
     for p, data in cart[user_id].items():

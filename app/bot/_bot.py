@@ -1,24 +1,13 @@
-from telebot import TeleBot
-from app.bot.handlers import handlers
-from app.config import _config
+from app.scheduler import start_scheduler
+from app.bot.bot_instance import bot
 
-
-class Bot:
-    def __init__(self):
-        self.bot = TeleBot(_config.tg_token)
-        self.setup_handlers()
-        
-    def setup_handlers(self):
-        handlers(self.bot)
-    
-    
-    def run(self):
-        print('bot started')
-        self.bot.infinity_polling(skip_pending=True)
-    
 def main():
-    bot = Bot()
-    bot.run()
+    import app.bot.handlers
+    start_scheduler()
+    print("bot started")
+    bot.infinity_polling(skip_pending=True)
+
+
     
-if __name__=='__main__':
+if __name__=="__main__":
     main()
