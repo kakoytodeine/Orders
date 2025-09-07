@@ -8,3 +8,4 @@ from . import info
 from . import last_order
 from . import new_order
 from . import notification
+from . import price

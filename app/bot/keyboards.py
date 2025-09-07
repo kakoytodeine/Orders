@@ -3,7 +3,6 @@ from app.services import CategoryService, UserService, ProductService
 from app.db.db_session import SessionLocal
 
 cart = {}
-temp_messages = {}
 
 
 def get_main_menu(tg_id: int) -> InlineKeyboardMarkup:
@@ -11,6 +10,7 @@ def get_main_menu(tg_id: int) -> InlineKeyboardMarkup:
     inline_buttons = []
     inline_buttons.append(InlineKeyboardButton('📝 Сделать заказ', callback_data="new_order"))
     inline_buttons.append(InlineKeyboardButton('🕘 Последний заказ', callback_data="last_order"))
+    inline_buttons.append(InlineKeyboardButton("Актуальные цены", callback_data="actual_price"))
     
     with SessionLocal() as session:
         user_service = UserService(session=session)
@@ -100,7 +100,7 @@ def get_inline_keyboard_category(sep: str) -> InlineKeyboardMarkup:
             ))
     kb.add(InlineKeyboardButton(
         text="🔙 Назад",
-        callback_data="back_to_main_menu"
+        callback_data="back"
     ))
     return kb
 
@@ -147,4 +147,13 @@ def create_product_keyboard_from_db(category_id: int, user_id: int) -> InlineKey
 
         kb.add(InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_delete_category"))
 
+    return kb
+
+
+def get_keyboard_add_product(category_id) -> InlineKeyboardMarkup:
+    kb = InlineKeyboardMarkup(row_width=1)
+    
+    kb.add(InlineKeyboardButton("Добавить товар", callback_data=f"add_new_product_{category_id}"))
+    kb.add(InlineKeyboardButton("Отмена", callback_data="back"))
+    
     return kb

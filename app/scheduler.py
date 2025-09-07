@@ -11,12 +11,12 @@ def start_scheduler():
                  {"task": "Сделать заказ по ПЕПСИко", "hours": 10, "minute": 0},
                  {"task": "Сделать заказ по СНС", "hours": 10, "minute": 0},
                  {"task": "Сделать заказ по Сатурну", "hours": 10, "minute": 0}],
-             1: [{"task": "Сделать заказ по Флешу", "hours": 10, "minute": 0}],
-             3: [{"task": "Сделать заказ по берну", "hours": 11, "minute": 0},
-                 {"task": "Сделать заказ Мегаполис", "hours": 10, "minute": 0},
-                 {"task": "Сделать заказ по ЛИТэнерджи", "hours": 10, "minute": 0},
+             1: [{"task": "Сделать заказ по Флешу", "hours": 10, "minute": 0},
+                 {"task": "Сделать заказ по берну", "hours": 10, "minute": 0}],
+             3: [{"task": "Сделать заказ Мегаполис", "hours": 10, "minute": 0},
+                 {"task": "Сделать заказ по ЛИТэнерджи", "hours": 12, "minute": 0},
                  {"task": "Сделать заказ по Сатурн", "hours": 10, "minute": 0},
-                 {"task": "Сделать заказ по СНС", "hours": 10, "minute": 0}
+                 {"task": "Сделать заказ по СНС", "hours": 12, "minute": 0}
                  ]}
     scheduler.remove_all_jobs()
     for day, task in tasks.items():

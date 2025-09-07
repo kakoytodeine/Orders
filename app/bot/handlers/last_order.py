@@ -1,6 +1,6 @@
 from telebot.types import CallbackQuery
 from app.bot.bot_instance import bot
-from app.bot.keyboards import temp_messages, get_last_order_keyboard, cart
+from app.bot.keyboards import  get_last_order_keyboard, cart
 from app.db.db_session import SessionLocal
 from app.services import UserService, OrderService, ProductService
 
@@ -10,12 +10,6 @@ def get_last_order(call: CallbackQuery):
     bot.answer_callback_query(call.id)
     tg_id = call.from_user.id
     
-    if tg_id in temp_messages:
-        try:
-            bot.delete_message(call.message.chat.id, temp_messages[tg_id])
-        except Exception as e:
-            print(f"Ошибка при удалении сообщения: {e}")
-        temp_messages.pop(tg_id, None)
     
     bot.edit_message_text(chat_id=call.message.chat.id,
                           message_id=call.message.message_id,
@@ -78,4 +72,3 @@ def get_actual_order(call: CallbackQuery):
             
             # Отправляем длинное сообщение
             last_msg_id = send_long_message(call.message.chat.id, msg_text)
-            temp_messages[call.from_user.id] = last_msg_id

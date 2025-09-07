@@ -2,7 +2,7 @@ from telebot.types import CallbackQuery
 
 from app.bot.bot_instance import bot
 from app.bot.keyboards import get_inline_keyboard_category, user_pages_by_cart, cart, create_cart_keyboard, \
-    get_category_by_user, get_main_menu, temp_messages
+    get_category_by_user, get_main_menu
 from app.db.db_session import SessionLocal
 from app.services import CategoryService, ProductService, UserService, OrderService
 from app.logger import logger
@@ -11,13 +11,6 @@ from app.logger import logger
 @bot.callback_query_handler(func=lambda call: call.data == "new_order")
 def handle_start_order(call: CallbackQuery):
     tg_id = call.from_user.id
-    
-    if tg_id in temp_messages:
-        try:
-            bot.delete_message(call.message.chat.id, temp_messages[tg_id])
-        except:
-            pass
-        temp_messages.pop(tg_id)
     
     bot.answer_callback_query(call.id)
     bot.edit_message_text(f'🏷️ Выберите категорию:',

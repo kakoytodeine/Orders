@@ -35,4 +35,4 @@ alembic/__pycache__/
 Thumbs.db
 
 *.xlsx
-data/load_products.py
+data/
